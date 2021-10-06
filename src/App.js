@@ -1,24 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
+import { addCount, reduceCount } from './Redux/actions';
+import { useContext } from 'react';
+import { AppContext } from './Context/AppContextProvider';
+
 
 function App() {
+  const { getState, dispatch } = useContext(AppContext);
+  const { counter } = getState();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+          <h1>Counter : {counter}</h1>
+          <button onClick={() => dispatch(addCount(1))}>add</button>
+          <button onClick={() => dispatch(reduceCount(1))}>reduce</button>
+      </div>
   );
 }
 
